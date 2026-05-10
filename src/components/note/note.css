@@ -1,0 +1,31 @@
+.note{
+    width: 200px;
+    height: 200px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin: 10px;
+    transition: transform 0.3s ease;
+}
+.note:hover{
+    transform: translateY(-3px);
+    transition: transform 0.3s ease;
+    background-color: #e4e4e4;
+}
+.note h3 {
+    margin-top: 0;
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    color: #000;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+.note p {
+    font-family: "Michroma", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #000;
+}

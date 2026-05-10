@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+:root{
+    --bg: #fff;
+    --text: #000;
+    --text-h: #111;
+    --border: #eee;
+    --primary: #0070f3;
+    --heading: 'Inter', sans-serif;
+    --mono: 'SF Mono', SF Mono, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+body{
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--bg);
+}
