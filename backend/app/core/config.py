@@ -18,6 +18,15 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://notescoon:notescoon@localhost:5432/notescoon"
     secret_key: str = "dev-secret-change-me"
 
+    session_cookie_name: str = "notescoon_session"
+    session_ttl_days: int = 7
+    cookie_samesite: str = "lax"
+    cookie_path: str = "/"
+
+    @property
+    def cookie_secure(self) -> bool:
+        return self.env.lower() == "production"
+
 
 @lru_cache
 def get_settings() -> Settings:

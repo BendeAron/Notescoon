@@ -6,6 +6,8 @@ psycopg[binary]>=3.2
 
 alembic>=1.13
 
+passlib[bcrypt]>=1.7.4
+
 pydantic-settings>=2.2
 python-dotenv>=1.0
 

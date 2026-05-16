@@ -3,11 +3,13 @@ from __future__ import annotations
 import logging
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, status
+from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
+from sqlalchemy.orm import sessionmaker
 
 from app.api.router import api_router
 from app.core.config import get_settings
+from app.core.errors import ApiError
 from app.core.logging import configure_logging
 from app.db.engine import check_db_connection, create_db_engine
 
@@ -31,6 +33,7 @@ async def lifespan(app: FastAPI):
 
     app.state.settings = settings
     app.state.db_engine = engine
+    app.state.db_sessionmaker = sessionmaker(bind=engine, expire_on_commit=False)
 
     yield
 
@@ -39,6 +42,16 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Notescoon", lifespan=lifespan)
+
+
+@app.exception_handler(ApiError)
+async def api_error_handler(_request: Request, exc: ApiError):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": {"code": exc.code, "message": exc.message}},
+    )
+
+
 app.include_router(api_router, prefix="/api")
 
 

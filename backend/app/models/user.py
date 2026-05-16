@@ -12,6 +12,7 @@ from app.db.base import Base
 
 if TYPE_CHECKING:
     from app.models.note import Note
+    from app.models.session import UserSession
 
 
 class User(Base):
@@ -41,6 +42,11 @@ class User(Base):
     )
 
     notes: Mapped[list["Note"]] = relationship(
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
+
+    sessions: Mapped[list["UserSession"]] = relationship(
         back_populates="user",
         cascade="all, delete-orphan",
     )
