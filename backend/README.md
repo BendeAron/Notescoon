@@ -64,3 +64,53 @@ Create a new migration (autogenerate):
 alembic revision --autogenerate -m "describe change"
 ```
 
+## Quick manual test (curl)
+
+Assumes the API is running on `http://localhost:8000`.
+
+Register (stores cookie to `cookies.txt`):
+
+```bash
+curl -i -c cookies.txt \
+	-H "Content-Type: application/json" \
+	-d '{"email":"test@example.com","password":"password123"}' \
+	http://localhost:8000/api/auth/register
+```
+
+Create a note:
+
+```bash
+curl -i -b cookies.txt \
+	-H "Content-Type: application/json" \
+	-d '{"title":"Shopping","content":"Milk, eggs"}' \
+	http://localhost:8000/api/notes
+```
+
+List notes:
+
+```bash
+curl -i -b cookies.txt http://localhost:8000/api/notes
+```
+
+Get one note (replace NOTE_ID):
+
+```bash
+curl -i -b cookies.txt http://localhost:8000/api/notes/NOTE_ID
+```
+
+Update a note:
+
+```bash
+curl -i -b cookies.txt \
+	-H "Content-Type: application/json" \
+	-X PATCH \
+	-d '{"title":"Updated"}' \
+	http://localhost:8000/api/notes/NOTE_ID
+```
+
+Delete a note:
+
+```bash
+curl -i -b cookies.txt -X DELETE http://localhost:8000/api/notes/NOTE_ID
+```
+

@@ -47,6 +47,14 @@
     height: 200px;
     resize: none;
 }
+.create-note .note-error {
+    width: 100%;
+    margin: 6px 0 0;
+    font-family: "Michroma", sans-serif;
+    color: #b00020;
+    position: relative;
+    top: 10px;
+}
 .create-note button{
     background-color: #fff;  
     font-family: "Audiowide", sans-serif;
