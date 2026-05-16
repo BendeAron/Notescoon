@@ -35,3 +35,26 @@ python -m uvicorn app.main:app --reload --port 8000
 
 Health check:
 - http://localhost:8000/health
+
+## Migrations (Alembic)
+
+Run these commands from the `backend/` folder (so `.env` is picked up):
+
+Apply migrations:
+
+```bash
+alembic upgrade head
+```
+
+Rollback one migration:
+
+```bash
+alembic downgrade -1
+```
+
+Create a new migration (autogenerate):
+
+```bash
+alembic revision --autogenerate -m "describe change"
+```
+
