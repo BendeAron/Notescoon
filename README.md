@@ -8,6 +8,32 @@ Notescoon is a small React project for practicing component-based UI development
 
 ## Getting Started
 
+### Backend (FastAPI + Postgres)
+
+Prereqs:
+- Docker Desktop (for the local Postgres container)
+- Python 3.11+ recommended
+
+Start Postgres (repo root):
+
+```
+docker compose up -d
+```
+
+Run the backend:
+
+```
+cd backend
+copy .env.example .env
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m uvicorn app.main:app --reload --port 8000
+```
+
+Health check:
+- http://localhost:8000/health
+
 ### Dependencies
 
 * Node.js (LTS recommended) and npm

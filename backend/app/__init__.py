@@ -1,0 +1,1 @@
+"""Notescoon backend application package."""
