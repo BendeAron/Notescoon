@@ -32,6 +32,13 @@ class Settings(BaseSettings):
 def get_settings() -> Settings:
     settings = Settings()
 
+    db_url = settings.database_url.strip()
+    if db_url.startswith("postgres://"):
+        db_url = "postgresql://" + db_url[len("postgres://") :]
+    if db_url.startswith("postgresql://"):
+        db_url = "postgresql+psycopg://" + db_url[len("postgresql://") :]
+    settings.database_url = db_url
+
     if settings.env.lower() == "production" and settings.secret_key == "dev-secret-change-me":
         raise ValueError("SECRET_KEY must be set in production")
 
